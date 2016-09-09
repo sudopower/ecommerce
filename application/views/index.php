@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<!--<link rel="stylesheet" type="text/css" href="<? php echo base_url(public/css/bootstrap.min.css); ?>">
 	<link rel="stylesheet" type="text/css" href="C:\xampp\htdocs\ecommerce\public\css\bootstrap.min.css">-->
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
 	<style type="text/css">
 
 	::selection { background-color: #E13300; color: white; }
@@ -122,8 +123,8 @@ table {
 }
 
 td {
-    text-align: left;
-
+    text-align: center;
+    font-family: 'Fira Sans', sans-serif;
     padding: 8px;
 }
 th{
@@ -134,6 +135,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 .space{
 	padding-bottom: 1em;
 }
+
 		</style>
 </head>
 <body>
@@ -186,7 +188,7 @@ $(function () {
         },
         yAxis: {
             title: {
-                text: 'Temperature (°C)'
+                text: 'Profit'
             },
             plotLines: [{
                 value: 0,
@@ -195,7 +197,7 @@ $(function () {
             }]
         },
         tooltip: {
-            valueSuffix: '°C'
+            valueSuffix: '₹'
         },
         legend: {
             layout: 'vertical',
@@ -204,16 +206,16 @@ $(function () {
             borderWidth: 0
         },
         series: [{
-            name: 'Tokyo',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            name: 'Mobile',
+            data: [10, 7.9, 7.5, 7.5, 6.2, 6.5, 26.2, 6.5, 23.3, 18.3, 13.9, 9.6]
         }, {
-            name: 'New York',
+            name: 'Tablet',
             data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
         }, {
-            name: 'Berlin',
+            name: 'Laptop',
             data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
         }, {
-            name: 'London',
+            name: 'Computer Hardware ',
             data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
         }]
     });
@@ -236,44 +238,51 @@ $(function () {
 			<div class="col-md-4">
 
 <table class="table table-striped table-bordered">
-    <tr>
-		
-		<td>Name</td>
-		
-		<td>Category Id</td>
-		
+    <tr ><th colspan="3">Most Sold Products</th></tr>
+     <tr>	
+		<td>Name</td>		
+		<td>Sold</td>		
     </tr>
-	<?php foreach($products as $p): ?>
-    <tr>
-		
-		<td><?php echo $p['name']; ?></td>
-		
-		<td><?php echo $p['category_id']; ?></td>
-		
-    </tr>
-	<?php endforeach; ?>
+    
+
+	<?php foreach($bestseller as $b): ?>  
+	<tr> 
+
+			<td><?php echo $b['name']; ?></td>
+			<td><?php echo $b['value_occurrence']?></td>
+		<?php endforeach; ?>
+	
+	</tr>
+			
 </table>
 </div>
 
+<div class="col-md-4">
+<table class="table table-striped table-bordered">
+    <tr ><th colspan="3">Most Profitable Products</th></tr>
+    <tr>
+		<td colspan="2">Name</td>
+		<td>Earned</td>
+	</tr>
+	<tr>
+	<?php foreach($bestseller as $b): ?>    		
+		<td><?php echo $b['name']; ?></td>
+	</tr>
+	<?php endforeach; ?>
+</table>	
+</div>
 
 <div class="col-md-4">
 <table class="table table-striped table-bordered">
+    <tr ><th colspan="3">Most Important Clients</th></tr>
     <tr>
-		
-		<td>Fname</td>
-		<td>Lname</td>
-		
+		<td colspan="2">Name</td>
 		<td>Order History</td>
-		
-    </tr>
+	</tr>
 	<?php foreach($users as $u): ?>
     <tr>
-		
-		<td><?php echo $u['fname']; ?></td>
-		<td><?php echo $u['lname']; ?></td>
-		<td><?php echo $u['order_history']; ?></td>
-		
-    </tr>
+		<td><?php echo $u['username']; ?></td>
+	</tr>
 	<?php endforeach; ?>
 </table>	
 </div>
